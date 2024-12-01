@@ -3,6 +3,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@myrmidon/ngx-mat-tools": [
+        "./dist/myrmidon/ngx-mat-tools"
+      ],
+      "@myrmidon/ngx-tools": [
+        "./dist/myrmidon/ngx-tools"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

@@ -1,0 +1,29 @@
+{
+  "name": "@myrmidon/ngx-tools",
+  "version": "0.0.1",
+  "description": "Essential general-purpose tools for Angular apps.",
+  "keywords": [
+    "local-storage",
+    "environment",
+    "error",
+    "roman numbers",
+    "deep copy",
+    "safe html"
+  ],
+  "homepage": "https://github.com/vedph/ngx-tools/tree/master/projects/myrmidon/ngx-tools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedph/ngx-tools"
+  },
+  "author": {
+    "name": "Daniele Fusi"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

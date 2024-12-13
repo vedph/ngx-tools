@@ -24,4 +24,13 @@
   <p style="border: 1px solid silver; border-radius: 6px; padding: 0 6px">
     {{ text.value | ellipsis : limit.value }}
   </p>
+  <div class="form-row">
+    @for (color of colors; track color) {
+    <div
+      class="chip"
+      [style.background]="color"
+      [style.color]="color | colorToContrast"
+    >{{color}}</div>
+    }
+  </div>
 </div>

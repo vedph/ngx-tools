@@ -11,3 +11,7 @@ npm run build-lib
 ng build
 ./publish.bat
 ```
+
+## History
+
+- 2024-12-13: `@myrmidon/ngx-tools`: improved `colorToContrast` and added `colorNameService`.

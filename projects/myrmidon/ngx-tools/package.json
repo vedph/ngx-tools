@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/ngx-tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Essential general-purpose tools for Angular apps.",
   "keywords": [
     "local-storage",

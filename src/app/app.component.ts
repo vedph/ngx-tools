@@ -6,8 +6,9 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+// import { RouterOutlet } from '@angular/router';
 import {
+  ColorToContrastPipe,
   EllipsisPipe,
   FlatLookupPipe,
 } from '../../projects/myrmidon/ngx-tools/src/public-api';
@@ -25,6 +26,7 @@ interface Pair {
     ReactiveFormsModule,
     FlatLookupPipe,
     EllipsisPipe,
+    ColorToContrastPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -37,6 +39,29 @@ export class AppComponent {
   public text: FormControl<string | null>;
   public limit: FormControl<number>;
   public form: FormGroup;
+
+  public colors = [
+    'black',
+    'white',
+    'red',
+    'green',
+    'blue',
+    'yellow',
+    'purple',
+    'orange',
+    'pink',
+    'brown',
+    'gray',
+    'cyan',
+    'magenta',
+    'lime',
+    'navy',
+    'maroon',
+    'olive',
+    'teal',
+    'silver',
+    'gold',
+  ];
 
   constructor(formBuilder: FormBuilder) {
     // maps
@@ -71,5 +96,19 @@ export class AppComponent {
       text: this.text,
       limit: this.limit,
     });
+
+    // add 10 more random colors
+    for (let i = 0; i < 10; i++) {
+      this.colors.push(this.getRandomColor());
+    }
+  }
+
+  private getRandomColor(): string {
+    return (
+      '#' +
+      Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, '0')
+    );
   }
 }

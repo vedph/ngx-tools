@@ -14,4 +14,14 @@ ng build
 
 ## History
 
+### ngx-tools
+
+#### 0.0.3
+
+- 2024-12-14: more color names.
+
+#### 0.0.2
+
 - 2024-12-13: `@myrmidon/ngx-tools`: improved `colorToContrast` and added `colorNameService`.
+
+### ngx-mat-tools

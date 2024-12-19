@@ -10,6 +10,7 @@ import {
 import {
   ColorToContrastPipe,
   EllipsisPipe,
+  EnvService,
   FlatLookupPipe,
 } from '../../projects/myrmidon/ngx-tools/src/public-api';
 
@@ -32,6 +33,7 @@ interface Pair {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  public readonly version: string;
   public objMap: any;
   public arrMap: Pair[];
   public key: string;
@@ -63,7 +65,8 @@ export class AppComponent {
     'gold',
   ];
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, env: EnvService) {
+    this.version = env.get('version', 'NOT-SET')!;
     // maps
     this.objMap = {
       r: 'red',

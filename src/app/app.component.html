@@ -1,36 +1,43 @@
-<div style="margin: 16px">
-  <h1>Ng Tools</h1>
-  <p>Generic Angular tools.</p>
+<main>
+  <div style="margin: 16px">
+    <h1>Ng Tools</h1>
+    <p>Generic Angular tools.</p>
 
-  <h2>Flat Lookup Pipe</h2>
-  <p>With an object: {{ key | flatLookup : objMap }}</p>
-  <p>With an array: {{ key | flatLookup : arrMap }}</p>
+    <h2>Flat Lookup Pipe</h2>
+    <p>With an object: {{ key | flatLookup : objMap }}</p>
+    <p>With an array: {{ key | flatLookup : arrMap }}</p>
 
-  <h2>Ellipsis Pipe</h2>
-  <form [formGroup]="form">
-    <div>
-      <textarea
-        [formControl]="text"
-        rows="3"
-        style="width: 100%; max-width: 800px"
-      ></textarea>
+    <h2>Ellipsis Pipe</h2>
+    <form [formGroup]="form">
+      <div>
+        <textarea
+          [formControl]="text"
+          rows="3"
+          style="width: 100%; max-width: 800px"
+        ></textarea>
+      </div>
+      <div>
+        limit:
+        <input type="number" min="1" [formControl]="limit" style="width: 3em" />
+      </div>
+    </form>
+    <br />
+    <p style="border: 1px solid silver; border-radius: 6px; padding: 0 6px">
+      {{ text.value | ellipsis : limit.value }}
+    </p>
+    <div class="form-row">
+      @for (color of colors; track color) {
+      <div
+        class="chip"
+        [style.background]="color"
+        [style.color]="color | colorToContrast"
+      >
+        {{ color }}
+      </div>
+      }
     </div>
-    <div>
-      limit:
-      <input type="number" min="1" [formControl]="limit" style="width: 3em" />
-    </div>
-  </form>
-  <br />
-  <p style="border: 1px solid silver; border-radius: 6px; padding: 0 6px">
-    {{ text.value | ellipsis : limit.value }}
-  </p>
-  <div class="form-row">
-    @for (color of colors; track color) {
-    <div
-      class="chip"
-      [style.background]="color"
-      [style.color]="color | colorToContrast"
-    >{{color}}</div>
-    }
   </div>
-</div>
+</main>
+<footer>
+  <p>version: {{ version }}</p>
+</footer>

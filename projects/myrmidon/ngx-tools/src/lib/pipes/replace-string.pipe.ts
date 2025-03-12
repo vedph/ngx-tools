@@ -8,11 +8,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * - {{ 'Hello, world!' | replaceString:'world':'planet' }}
  * - {{ 'Hello, world!' | replaceString:'[aeiou]':'*' }}
  */
-@Pipe({
-  name: 'replaceString',
-  standalone: true,
-  pure: true,
-})
+@Pipe({ name: 'replaceString' })
 export class ReplaceStringPipe implements PipeTransform {
   /**
    * Replaces text in a string.

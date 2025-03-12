@@ -12,6 +12,7 @@ import {
   EllipsisPipe,
   EnvService,
   FlatLookupPipe,
+  ReplaceStringPipe,
 } from '../../projects/myrmidon/ngx-tools/src/public-api';
 
 interface Pair {
@@ -28,6 +29,7 @@ interface Pair {
     FlatLookupPipe,
     EllipsisPipe,
     ColorToContrastPipe,
+    ReplaceStringPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

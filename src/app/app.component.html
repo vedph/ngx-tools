@@ -25,6 +25,11 @@
     <p style="border: 1px solid silver; border-radius: 6px; padding: 0 6px">
       {{ text.value | ellipsis : limit.value }}
     </p>
+    <h2>Replacement Pipe</h2>
+    <p>
+      {{ "hello world" | replaceString : "world" : "world!" : false }}
+    </p>
+    <h2>Color to Contrast Pipe</h2>
     <div class="form-row">
       @for (color of colors; track color) {
       <div

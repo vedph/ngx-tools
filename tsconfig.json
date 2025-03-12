@@ -3,13 +3,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@myrmidon/ngx-mat-tools": [
-        "./dist/myrmidon/ngx-mat-tools"
-      ],
-      "@myrmidon/ngx-tools": [
-        "./dist/myrmidon/ngx-tools"
-      ]
+      "@myrmidon/ngx-mat-tools": ["./dist/myrmidon/ngx-mat-tools"],
+      "@myrmidon/ngx-tools": ["./dist/myrmidon/ngx-tools"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -24,7 +21,8 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "types": ["node", "jest"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

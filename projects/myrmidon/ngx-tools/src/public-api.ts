@@ -8,6 +8,7 @@ export * from './lib/pipes/color-to-contrast.pipe';
 export * from './lib/pipes/ellipsis.pipe';
 export * from './lib/pipes/flat-lookup.pipe';
 export * from './lib/pipes/join.pipe';
+export * from './lib/pipes/replace-string.pipe';
 export * from './lib/pipes/safe-html.pipe';
 export * from './lib/pipes/string-to-color.pipe';
 

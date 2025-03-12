@@ -53,6 +53,10 @@ The `env.js` file should include all your environment-dependent settings, e.g.:
 
 ## History
 
+### 1.0.2
+
+- 2025-03-12: added replace string pipe.
+
 ### 1.0.1
 
 - 2024-12-19: ⚠️ use singleton for `EnvService` removing the need for `EnvServiceProvider`. This is strictly a breaking change, but in the end all what you need to do is just remove `EnvServiceProvider` from the `providers` array of your app. The rest of the code will work as before, because the same `EnvService` will be injected and also properly initialized.

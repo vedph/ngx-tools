@@ -53,6 +53,10 @@ The `env.js` file should include all your environment-dependent settings, e.g.:
 
 ## History
 
+### 1.0.3
+
+- 2025-04-11: added dynamic focus service.
+
 ### 1.0.2
 
 - 2025-03-12: added replace string pipe.

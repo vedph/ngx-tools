@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/ngx-tools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Essential general-purpose tools for Angular apps.",
   "keywords": [
     "local-storage",
@@ -8,7 +8,8 @@
     "error",
     "roman numbers",
     "deep copy",
-    "safe html"
+    "safe html",
+    "focus"
   ],
   "homepage": "https://github.com/vedph/ngx-tools/tree/master/projects/myrmidon/ngx-tools",
   "repository": {

@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/ngx-tools",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Essential general-purpose tools for Angular apps.",
   "keywords": [
     "local-storage",
@@ -20,8 +20,8 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

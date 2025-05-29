@@ -53,6 +53,10 @@ The `env.js` file should include all your environment-dependent settings, e.g.:
 
 ## History
 
+### 2.0.0
+
+- 2025-05-29: ⚠️ upgraded to Angular 20.
+
 ### 1.0.3
 
 - 2025-04-11: added dynamic focus service.

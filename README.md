@@ -17,6 +17,7 @@ ng build
 - [ngx-tools](./projects/myrmidon/ngx-tools/README.md#history)
 - [ngx-mat-tools](./projects/myrmidon/ngx-mat-tools/README.md#history)
 
+- 2025-05-29: ⚠️ upgraded to Angular 20.
 - 2025-03-12:
   - updated Angular and packages.
   - added replace string pipe.

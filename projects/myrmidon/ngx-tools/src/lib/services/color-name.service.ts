@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class ColorNameService {
   // https://www.w3.org/TR/css-color-4/#named-colors
+  // All 147 standard CSS Color Module Level 4 named colors
   private readonly _colorMap: { [key: string]: string } = {
     aliceblue: '#F0F8FF',
     antiquewhite: '#FAEBD7',
@@ -157,18 +158,20 @@ export class ColorNameService {
     whitesmoke: '#F5F5F5',
     yellow: '#FFFF00',
     yellowgreen: '#9ACD32',
+    transparent: 'transparent', // Special case: fully transparent color
   };
 
   /**
    * Get hex value from a color name.
    *
    * @param name Name of the color (case-insensitive).
-   * @returns Hex color value, or undefined if not found.
+   * @returns Hex color value (or 'transparent' for transparent color),
+   * or undefined if not found.
    */
-  private getColorHex(name: string): string | undefined {
+  public getColorHex(name: string): string | undefined {
     if (!name) return undefined;
 
-    // Normalize the color name (lowercase, remove spaces)
+    // normalize the color name (lowercase, remove spaces)
     const normalizedName = name.toLowerCase().replace(/\s+/g, '');
 
     return this._colorMap[normalizedName];
@@ -195,30 +198,62 @@ export class ColorNameService {
 
   /**
    * Normalize a color value to its uppercase hex representation.
+   * This function is designed to be safe for use in Angular pipes and will
+   * never throw errors, returning undefined for invalid inputs instead.
    *
    * @param color Color value (name or hex, including shorthand).
-   * @returns Normalized hex color, or undefined.
+   * @param noNames If true, color names will not be resolved (default: false).
+   * @returns Normalized hex color (or 'transparent'), or undefined if invalid.
    */
-  public normalizeColor(color: string): string | undefined {
-    if (!color) return undefined;
+  public normalizeColor(color: string, noNames = false): string | undefined {
+    try {
+      if (!color) return undefined;
 
-    // if it's already a valid hex, return it
-    if (/^#[0-9A-Fa-f]{6}$/i.test(color)) return color.toUpperCase();
+      // trim whitespace
+      color = color.trim();
+      if (!color) return undefined;
 
-    // try to get hex from color name
-    const hexFromName = this.getColorHex(color);
-    if (hexFromName) return hexFromName.toUpperCase();
+      // check for hex pattern (6-digit or 3-digit)
+      const isHex = /^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$/i.test(color);
 
-    // handle shorthand hex
-    if (/^#[0-9A-Fa-f]{3}$/i.test(color)) {
-      return (
-        '#' +
-        color[1].repeat(2) +
-        color[2].repeat(2) +
-        color[3].repeat(2)
-      ).toUpperCase();
+      // if it's not a hex pattern and noNames is false, try to resolve as color name
+      if (!isHex && !noNames) {
+        const hexFromName = this.getColorHex(color);
+        if (hexFromName) {
+          // special case: transparent should be returned as-is
+          if (hexFromName === 'transparent') return 'transparent';
+          return hexFromName.toUpperCase();
+        }
+      }
+
+      // if it's already a valid 6-digit hex, return it normalized
+      if (/^#[0-9A-Fa-f]{6}$/i.test(color)) {
+        return color.toUpperCase();
+      }
+
+      // handle shorthand hex (e.g., #ABC -> #AABBCC)
+      if (/^#[0-9A-Fa-f]{3}$/i.test(color)) {
+        return (
+          '#' +
+          color[1].repeat(2) +
+          color[2].repeat(2) +
+          color[3].repeat(2)
+        ).toUpperCase();
+      }
+
+      // if we reach here, the color is invalid
+      return undefined;
+    } catch (error) {
+      // graceful fallback: never throw errors in pipes:
+      // log to console in development for debugging
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(
+          'ColorNameService.normalizeColor: Error processing color:',
+          color,
+          error
+        );
+      }
+      return undefined;
     }
-
-    return undefined;
   }
 }

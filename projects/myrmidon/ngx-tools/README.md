@@ -53,6 +53,12 @@ The `env.js` file should include all your environment-dependent settings, e.g.:
 
 ## History
 
+### 2.0.1
+
+- 2025-11-14:
+  - updated Angular and packages.
+  - improved color names service and `colorToContrast` pipe.
+
 ### 2.0.0
 
 - 2025-05-29: ⚠️ upgraded to Angular 20.

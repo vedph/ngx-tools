@@ -53,6 +53,10 @@ The `env.js` file should include all your environment-dependent settings, e.g.:
 
 ## History
 
+### 2.0.2
+
+- 2025-11-22: ⚠️ upgraded to Angular 21.
+
 ### 2.0.1
 
 - 2025-11-14:

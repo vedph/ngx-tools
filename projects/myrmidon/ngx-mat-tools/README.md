@@ -7,7 +7,11 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## History
 
-### 2.0.0
+### 1.0.1
+
+- 2025-11-22: ⚠️ upgraded to Angular 21.
+
+### 1.0.0
 
 - 2025-05-29: ⚠️ upgraded to Angular 20.
 

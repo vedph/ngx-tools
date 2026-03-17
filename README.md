@@ -23,7 +23,7 @@ ng build
   - upgraded Angular and packages.
   - refactored demo app styles for Angular Material M3 dark/light themes and utility classes.
   - 🆕 added `ThemeToggleComponent` (`ngx-theme-toggle`).
-  - migrated to `OnPush`.
+  - ⚠️ migrated to `OnPush` and zoneless.
 
 ### 1.0.1
 

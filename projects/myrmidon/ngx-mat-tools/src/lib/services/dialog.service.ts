@@ -24,7 +24,7 @@ export class DialogService {
     title: string,
     prompt: string,
     ok = 'yes',
-    cancel = 'no'
+    cancel = 'no',
   ): Observable<boolean> {
     let dialogRef: MatDialogRef<ConfirmDialogComponent>;
 

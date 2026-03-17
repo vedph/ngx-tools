@@ -13,7 +13,8 @@ import {
   EnvService,
   FlatLookupPipe,
   ReplaceStringPipe,
-} from '../../projects/myrmidon/ngx-tools/src/public-api';
+} from '@myrmidon/ngx-tools';
+import { ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
 
 interface Pair {
   id: string;
@@ -30,6 +31,7 @@ interface Pair {
     EllipsisPipe,
     ColorToContrastPipe,
     ReplaceStringPipe,
+    ThemeToggleComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

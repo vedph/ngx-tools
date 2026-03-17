@@ -4,8 +4,8 @@
     <p>Generic Angular tools.</p>
 
     <h2>Flat Lookup Pipe</h2>
-    <p>With an object: {{ key | flatLookup : objMap }}</p>
-    <p>With an array: {{ key | flatLookup : arrMap }}</p>
+    <p>With an object: {{ key | flatLookup: objMap }}</p>
+    <p>With an array: {{ key | flatLookup: arrMap }}</p>
 
     <h2>Ellipsis Pipe</h2>
     <form [formGroup]="form">
@@ -23,23 +23,27 @@
     </form>
     <br />
     <p style="border: 1px solid silver; border-radius: 6px; padding: 0 6px">
-      {{ text.value | ellipsis : limit.value }}
+      {{ text.value | ellipsis: limit.value }}
     </p>
     <h2>Replacement Pipe</h2>
     <p>
-      {{ "hello world" | replaceString : "world" : "world!" : false }}
+      {{ "hello world" | replaceString: "world" : "world!" : false }}
     </p>
     <h2>Color to Contrast Pipe</h2>
     <div class="form-row">
       @for (color of colors; track color) {
-      <div
-        class="chip"
-        [style.background]="color"
-        [style.color]="color | colorToContrast"
-      >
-        {{ color }}
-      </div>
+        <div
+          class="chip"
+          [style.background]="color"
+          [style.color]="color | colorToContrast"
+        >
+          {{ color }}
+        </div>
       }
+    </div>
+    <div>
+      <h2>Theme Toggle</h2>
+      <ngx-theme-toggle/>
     </div>
   </div>
 </main>

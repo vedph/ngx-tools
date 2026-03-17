@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 // import { RouterOutlet } from '@angular/router';
@@ -14,7 +18,8 @@ import {
   FlatLookupPipe,
   ReplaceStringPipe,
 } from '@myrmidon/ngx-tools';
-import { ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
+import { DialogService, ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
+import { MatAnchor } from '@angular/material/button';
 
 interface Pair {
   id: string;
@@ -23,91 +28,82 @@ interface Pair {
 
 @Component({
   selector: 'app-root',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     // RouterOutlet,
-    FormsModule,
     ReactiveFormsModule,
     FlatLookupPipe,
     EllipsisPipe,
     ColorToContrastPipe,
     ReplaceStringPipe,
-    ThemeToggleComponent
+    ThemeToggleComponent,
+    MatAnchor,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   public readonly version: string;
-  public objMap: any;
-  public arrMap: Pair[];
-  public key: string;
+  public readonly objMap: WritableSignal<Record<string, string>>;
+  public readonly arrMap: WritableSignal<Pair[]>;
+  public readonly key: WritableSignal<string>;
+  public readonly colors: WritableSignal<string[]>;
 
   public text: FormControl<string | null>;
   public limit: FormControl<number>;
   public form: FormGroup;
 
-  public colors = [
-    'black',
-    'white',
-    'red',
-    'green',
-    'blue',
-    'yellow',
-    'purple',
-    'orange',
-    'pink',
-    'brown',
-    'gray',
-    'cyan',
-    'magenta',
-    'lime',
-    'navy',
-    'maroon',
-    'olive',
-    'teal',
-    'silver',
-    'gold',
-  ];
-
-  constructor(formBuilder: FormBuilder, env: EnvService) {
+  constructor(
+    formBuilder: FormBuilder,
+    env: EnvService,
+    private dialogService: DialogService,
+  ) {
     this.version = env.get('version', 'NOT-SET')!;
-    // maps
-    this.objMap = {
-      r: 'red',
-      g: 'green',
-      b: 'blue',
-    };
 
-    this.arrMap = [];
-    this.arrMap.push({
-      id: 'r',
-      label: 'red',
-    });
-    this.arrMap.push({
-      id: 'g',
-      label: 'green',
-    });
-    this.arrMap.push({
-      id: 'b',
-      label: 'blue',
-    });
-    this.key = 'r';
+    this.objMap = signal({ r: 'red', g: 'green', b: 'blue' });
+    this.arrMap = signal([
+      { id: 'r', label: 'red' },
+      { id: 'g', label: 'green' },
+      { id: 'b', label: 'blue' },
+    ]);
+    this.key = signal('r');
 
-    // form
+    const baseColors = [
+      'black',
+      'white',
+      'red',
+      'green',
+      'blue',
+      'yellow',
+      'purple',
+      'orange',
+      'pink',
+      'brown',
+      'gray',
+      'cyan',
+      'magenta',
+      'lime',
+      'navy',
+      'maroon',
+      'olive',
+      'teal',
+      'silver',
+      'gold',
+    ];
+    this.colors = signal([
+      ...baseColors,
+      ...Array.from({ length: 10 }, () => this.getRandomColor()),
+    ]);
+
     this.text = formBuilder.control(
       'This is a sample text, used to test the ellipsis pipe. ' +
-        'You can try with different texts, or change the limit.'
+        'You can try with different texts, or change the limit.',
     );
     this.limit = formBuilder.control(15, { nonNullable: true });
     this.form = formBuilder.group({
       text: this.text,
       limit: this.limit,
     });
-
-    // add 10 more random colors
-    for (let i = 0; i < 10; i++) {
-      this.colors.push(this.getRandomColor());
-    }
   }
 
   private getRandomColor(): string {
@@ -117,5 +113,17 @@ export class AppComponent {
         .toString(16)
         .padStart(6, '0')
     );
+  }
+
+  public confirmDialog(): void {
+    this.dialogService
+      .confirm('Confirm', 'Are you sure?')
+      .subscribe((result) => {
+        if (result) {
+          console.log('Confirmed');
+        } else {
+          console.log('Cancelled');
+        }
+      });
   }
 }

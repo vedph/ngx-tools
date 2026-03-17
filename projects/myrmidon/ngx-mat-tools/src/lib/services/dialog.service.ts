@@ -29,10 +29,10 @@ export class DialogService {
     let dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
     dialogRef = this.dialog.open(ConfirmDialogComponent);
-    dialogRef.componentInstance.title = title;
-    dialogRef.componentInstance.prompt = prompt;
-    dialogRef.componentInstance.ok = ok;
-    dialogRef.componentInstance.cancel = cancel;
+    dialogRef.componentInstance.title.set(title);
+    dialogRef.componentInstance.prompt.set(prompt);
+    dialogRef.componentInstance.ok.set(ok);
+    dialogRef.componentInstance.cancel.set(cancel);
 
     return dialogRef.afterClosed();
   }

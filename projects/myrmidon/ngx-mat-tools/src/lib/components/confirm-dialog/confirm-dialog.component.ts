@@ -1,7 +1,6 @@
-import { Component, OnInit, Inject, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import {
   MatDialogRef,
-  MAT_DIALOG_DATA,
   MatDialogTitle,
   MatDialogContent,
   MatDialogActions,
@@ -16,6 +15,7 @@ import { MatButton } from '@angular/material/button';
   // selector: 'cadmus-confirm-dialog',
   templateUrl: './confirm-dialog.component.html',
   styleUrls: ['./confirm-dialog.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatDialogTitle,
     CdkScrollable,
@@ -24,21 +24,11 @@ import { MatButton } from '@angular/material/button';
     MatButton,
   ],
 })
-export class ConfirmDialogComponent implements OnInit {
-  public title: string;
-  public prompt: string;
-  public ok: string;
-  public cancel: string;
+export class ConfirmDialogComponent {
+  public readonly dialogRef = inject(MatDialogRef<ConfirmDialogComponent>);
 
-  constructor(
-    public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    this.title = 'Confirm';
-    this.prompt = 'Confirm operation?';
-    this.ok = 'yes';
-    this.cancel = 'no';
-  }
-
-  ngOnInit() {}
+  public readonly title = signal('Confirm');
+  public readonly prompt = signal('Confirm operation?');
+  public readonly ok = signal('yes');
+  public readonly cancel = signal('no');
 }

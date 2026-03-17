@@ -4,8 +4,8 @@
     <p>Generic Angular tools.</p>
 
     <h2>Flat Lookup Pipe</h2>
-    <p>With an object: {{ key | flatLookup: objMap }}</p>
-    <p>With an array: {{ key | flatLookup: arrMap }}</p>
+    <p>With an object: {{ key() | flatLookup: objMap() }}</p>
+    <p>With an array: {{ key() | flatLookup: arrMap() }}</p>
 
     <h2>Ellipsis Pipe</h2>
     <form [formGroup]="form">
@@ -31,7 +31,7 @@
     </p>
     <h2>Color to Contrast Pipe</h2>
     <div class="form-row">
-      @for (color of colors; track color) {
+      @for (color of colors(); track color) {
         <div
           class="chip"
           [style.background]="color"
@@ -43,7 +43,12 @@
     </div>
     <div>
       <h2>Theme Toggle</h2>
-      <ngx-theme-toggle/>
+      <ngx-theme-toggle />
+    </div>
+    <div>
+      <button type="button" mat-flat-button (click)="confirmDialog()">
+        Open Confirm Dialog
+      </button>
     </div>
   </div>
 </main>

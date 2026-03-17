@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>{{ title }}</h2>
+<h2 mat-dialog-title>{{ title() }}</h2>
 <mat-dialog-content>
-  {{ prompt }}
+  {{ prompt() }}
 </mat-dialog-content>
 <mat-dialog-actions>
   <button
@@ -9,9 +9,9 @@
     class="mat-warn"
     (click)="dialogRef.close(true)"
   >
-    {{ ok }}
+    {{ ok() }}
   </button>
   <button type="button" mat-button (click)="dialogRef.close()">
-    {{ cancel }}
+    {{ cancel() }}
   </button>
 </mat-dialog-actions>

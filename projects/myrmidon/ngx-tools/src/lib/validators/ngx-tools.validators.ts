@@ -1,6 +1,7 @@
 import {
   AbstractControl,
   FormArray,
+  FormGroup,
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
@@ -70,7 +71,7 @@ export class NgxToolsValidators {
    */
   public static conditionalValidator(
     predicate: () => boolean,
-    validator: ValidatorFn
+    validator: ValidatorFn,
   ): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.parent) {
@@ -80,6 +81,65 @@ export class NgxToolsValidators {
         return validator(control);
       }
       return null;
+    };
+  }
+
+  /**
+   * Validate that at least one of the specified controls (or all controls in
+   * the group if no names are provided) has a value (consistent with
+   * Validators.required logic).
+   * Usage:
+   * ```ts
+   * this.form = this.formBuilder.group({
+   *   alt1: this.alt1,
+   *   alt2: this.alt2
+   * }, {
+   *   validators: [NgxToolsValidators.atLeastOneRequired(['alt1', 'alt2'])]
+   * });
+   * ```
+   * @param controlNames Optional array of control names to check.
+   * If omitted, all controls in the group are checked.
+   * @returns Null if at least one control is valid, else an 'atLeastOneRequired'
+   * error.
+   */
+  public static atLeastOneRequired(controlNames?: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      // ensure control is a FormGroup
+      if (!(control instanceof FormGroup)) {
+        return null;
+      }
+
+      const group = control as FormGroup;
+      const names = controlNames || Object.keys(group.controls);
+
+      const hasValue = names.some((name) => {
+        const c = group.get(name);
+
+        // if control is not found, ignore it
+        if (!c) {
+          return false;
+        }
+
+        // ignore disabled controls
+        if (c.disabled) {
+          return false;
+        }
+
+        // consistency with Validators.required
+        // Angular's Validators.required checks: value != null && value !== ''
+        // We also check for empty arrays/objects to be safe.
+        const value = c.value;
+        return (
+          value !== null &&
+          value !== undefined &&
+          value !== '' &&
+          (Array.isArray(value) ? value.length > 0 : true)
+        );
+      });
+
+      return hasValue
+        ? null
+        : { atLeastOneRequired: { checkedControls: names } };
     };
   }
 }

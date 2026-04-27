@@ -1,13 +1,12 @@
 {
   "name": "@myrmidon/ngx-tools",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Essential general-purpose tools for Angular apps.",
   "keywords": [
     "local-storage",
     "environment",
     "error",
     "roman numbers",
-    "deep copy",
     "safe html",
     "focus"
   ],
@@ -20,8 +19,8 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^20.0.0 || ^21.0.0",
-    "@angular/core": "^20.0.0 || ^21.0.0"
+    "@angular/common": "^21.2.10",
+    "@angular/core": "^21.2.10"
   },
   "dependencies": {
     "tslib": "^2.3.0"

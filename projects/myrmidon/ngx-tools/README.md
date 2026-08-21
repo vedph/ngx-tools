@@ -22,7 +22,8 @@ These are the typical services and tools shared by most of my Angular apps. For 
   - [RamStorageService](src/lib/services/ram-storage.service.ts)
   - [WindowRefService](src/lib/services/window-ref.service.ts)
 - **validators**:
-  - [NgxToolsValidators](src/lib/validators/ngx-tools.validators.ts)
+  - [NgxToolsValidators](src/lib/validators/ngx-tools.validators.ts): custom validators for reactive forms (`@angular/forms`).
+  - [NgxToolsSignalValidators](src/lib/validators/ngx-tools-signal.validators.ts): the same validators, rewritten for signal forms (`@angular/forms/signals`); use these instead if your app has migrated to signal-based forms.
 - **general**: [deep copy](src/lib/functions.ts) function, [Roman numbers](src/lib/roman-number.ts) bidirectional converter.
 
 ## Using EnvService
@@ -52,6 +53,10 @@ The `env.js` file should include all your environment-dependent settings, e.g.:
 ```
 
 ## History
+
+### 3.0.0
+
+- 2026-08-21: 🆕 added `NgxToolsSignalValidators`, the signal-forms (`@angular/forms/signals`) counterpart of `NgxToolsValidators`.
 
 ### 2.0.3
 

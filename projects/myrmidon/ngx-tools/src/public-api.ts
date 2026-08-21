@@ -21,6 +21,7 @@ export * from './lib/services/ram-storage.service';
 export * from './lib/services/window-ref.service';
 
 export * from './lib/validators/ngx-tools.validators';
+export * from './lib/validators/ngx-tools-signal.validators';
 
 export * from './lib/functions';
 export * from './lib/models';

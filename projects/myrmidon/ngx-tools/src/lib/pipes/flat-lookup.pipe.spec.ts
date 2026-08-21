@@ -76,6 +76,30 @@ describe('FlatLookupPipe', () => {
     expect(v).toBe('x');
   });
 
+  it('returns the value as a string when map is undefined', () => {
+    const pipe = new FlatLookupPipe();
+    const v = pipe.transform('r', undefined);
+    expect(v).toBe('r');
+  });
+
+  it('uses a custom fallback when object lookup fails', () => {
+    const pipe = new FlatLookupPipe();
+    const v = pipe.transform('x', { r: 'red' }, 'id', 'label', 'unknown');
+    expect(v).toBe('unknown');
+  });
+
+  it('uses a custom fallback when array lookup fails', () => {
+    const pipe = new FlatLookupPipe();
+    const v = pipe.transform('x', [{ id: 'r', label: 'red' }], 'id', 'label', 'unknown');
+    expect(v).toBe('unknown');
+  });
+
+  it('lookups a numeric key', () => {
+    const pipe = new FlatLookupPipe();
+    const v = pipe.transform(1, [{ id: 1, label: 'one' }]);
+    expect(v).toBe('one');
+  });
+
   it('lookups an array with custom names', () => {
     const pipe = new FlatLookupPipe();
     const v = pipe.transform(

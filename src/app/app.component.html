@@ -8,22 +8,26 @@
     <p>With an array: {{ key() | flatLookup: arrMap() }}</p>
 
     <h2>Ellipsis Pipe</h2>
-    <form [formGroup]="form">
+    <form [formRoot]="ellipsisForm">
       <div>
         <textarea
-          [formControl]="text"
+          [formField]="ellipsisForm.text"
           rows="3"
           style="width: 100%; max-width: 800px"
         ></textarea>
       </div>
       <div>
         limit:
-        <input type="number" min="1" [formControl]="limit" style="width: 3em" />
+        <input
+          type="number"
+          [formField]="ellipsisForm.limit"
+          style="width: 3em"
+        />
       </div>
     </form>
     <br />
     <p style="border: 1px solid silver; border-radius: 6px; padding: 0 6px">
-      {{ text.value | ellipsis: limit.value }}
+      {{ ellipsisForm.text().value() | ellipsis: ellipsisForm.limit().value() }}
     </p>
     <h2>Replacement Pipe</h2>
     <p>

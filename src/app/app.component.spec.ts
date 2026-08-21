@@ -14,16 +14,19 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'ngx-tools' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ngx-tools');
-  });
-
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ngx-tools');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Ng Tools');
+  });
+
+  it('should bind the ellipsis form fields to the model', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(app.ellipsisForm.text().value()).toBe(app.ellipsisModel().text);
+    expect(app.ellipsisForm.limit().value()).toBe(app.ellipsisModel().limit);
   });
 });

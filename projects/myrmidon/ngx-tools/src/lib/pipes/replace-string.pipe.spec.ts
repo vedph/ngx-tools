@@ -85,7 +85,7 @@ describe('ReplaceStringPipe', () => {
 
   describe('Error handling', () => {
     it('should return original string when regex is invalid', () => {
-      const consoleSpy = spyOn(console, 'warn');
+      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
       const result = pipe.transform('test', '[', 'replacement', true);
       expect(result).toBe('test');
       expect(consoleSpy).toHaveBeenCalled();

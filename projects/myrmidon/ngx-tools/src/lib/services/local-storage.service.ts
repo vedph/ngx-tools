@@ -81,20 +81,10 @@ export class LocalStorageService implements StorageService {
    * @param prefix key prefix.
    */
   public clear(prefix: string, session = false) {
-    if (session) {
-      for (let i = 0, len = sessionStorage.length; i < len; i++) {
-        const key = sessionStorage.key(i);
-        if (key?.startsWith(prefix)) {
-          sessionStorage.removeItem(key);
-        }
-      }
-    } else {
-      for (let i = 0, len = localStorage.length; i < len; i++) {
-        const key = localStorage.key(i);
-        if (key?.startsWith(prefix)) {
-          localStorage.removeItem(key);
-        }
-      }
+    // collect the matching keys first: removing while iterating by index
+    // would shift the indexes of the remaining entries and skip some
+    for (const key of this.getKeys(prefix, session)) {
+      this.remove(key, session);
     }
   }
 }

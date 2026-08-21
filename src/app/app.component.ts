@@ -4,12 +4,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { form, FormField, FormRoot, min } from '@angular/forms/signals';
 // import { RouterOutlet } from '@angular/router';
 import {
   ColorToContrastPipe,
@@ -26,12 +21,18 @@ interface Pair {
   label: string;
 }
 
+interface EllipsisDemo {
+  text: string;
+  limit: number;
+}
+
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     // RouterOutlet,
-    ReactiveFormsModule,
+    FormField,
+    FormRoot,
     FlatLookupPipe,
     EllipsisPipe,
     ColorToContrastPipe,
@@ -49,12 +50,10 @@ export class AppComponent {
   public readonly key: WritableSignal<string>;
   public readonly colors: WritableSignal<string[]>;
 
-  public text: FormControl<string | null>;
-  public limit: FormControl<number>;
-  public form: FormGroup;
+  public readonly ellipsisModel: WritableSignal<EllipsisDemo>;
+  public readonly ellipsisForm;
 
   constructor(
-    formBuilder: FormBuilder,
     env: EnvService,
     private dialogService: DialogService,
   ) {
@@ -95,14 +94,14 @@ export class AppComponent {
       ...Array.from({ length: 10 }, () => this.getRandomColor()),
     ]);
 
-    this.text = formBuilder.control(
-      'This is a sample text, used to test the ellipsis pipe. ' +
+    this.ellipsisModel = signal<EllipsisDemo>({
+      text:
+        'This is a sample text, used to test the ellipsis pipe. ' +
         'You can try with different texts, or change the limit.',
-    );
-    this.limit = formBuilder.control(15, { nonNullable: true });
-    this.form = formBuilder.group({
-      text: this.text,
-      limit: this.limit,
+      limit: 15,
+    });
+    this.ellipsisForm = form(this.ellipsisModel, (path) => {
+      min(path.limit, 1);
     });
   }
 

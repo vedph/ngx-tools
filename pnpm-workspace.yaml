@@ -4,3 +4,11 @@ allowBuilds:
   lmdb: true
   msgpackr-extract: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@rollup/rollup-win32-arm64-msvc@4.62.5'
+overrides:
+  rollup: npm:@rollup/wasm-node
+autoInstallPeers: false
+peerDependencyRules:
+  ignoreMissing:
+    - zone.js

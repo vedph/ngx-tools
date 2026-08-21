@@ -1,16 +1,17 @@
 {
   "name": "ngx-tools",
-  "version": "1.0.0",
+  "version": "3.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest --config=jest.config.js",
+    "test": "ng test ngx-tools --watch=false && ng test @myrmidon/ngx-tools --watch=false && ng test @myrmidon/ngx-mat-tools --watch=false",
+    "test:watch": "ng test ngx-tools",
     "build-lib": "ng build @myrmidon/ngx-tools && ng build @myrmidon/ngx-mat-tools"
   },
   "private": true,
-  "packageManager": "pnpm@11.5.2",
+  "packageManager": "pnpm@11.22.0",
   "dependencies": {
     "@angular/animations": "^22.0.0",
     "@angular/cdk": "^22.0.0",
@@ -29,20 +30,13 @@
     "@angular/build": "^22.0.0",
     "@angular/cli": "^22.0.0",
     "@angular/compiler-cli": "^22.0.0",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.9.2",
-    "jest": "^30.4.2",
-    "jest-preset-angular": "^16.1.5",
+    "@types/node": "^26.2.0",
+    "jsdom": "^30.0.1",
     "ng-packagr": "^22.0.0",
-    "ts-jest": "^29.4.11",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.11"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.61.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "rollup": "npm:@rollup/wasm-node"
-    }
+    "@rollup/rollup-win32-arm64-msvc": "^4.62.5"
   }
 }

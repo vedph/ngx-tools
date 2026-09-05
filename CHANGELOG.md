@@ -3,7 +3,11 @@
 - [ngx-tools](./projects/myrmidon/ngx-tools/README.md#history)
 - [ngx-mat-tools](./projects/myrmidon/ngx-mat-tools/README.md#history)
 
-- 2026-09-05: updated packages.
+## 3.0.2
+
+- 2026-09-05:
+  - 🆕 added `ColorService` (improving it from `@myrmidon/cadmus-ui`) and `ColorMap` with their tests.
+  - updated packages.
 
 ## 3.0.1
 

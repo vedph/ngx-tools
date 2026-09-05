@@ -13,6 +13,8 @@ export * from './lib/pipes/safe-html.pipe';
 export * from './lib/pipes/string-to-color.pipe';
 
 export * from './lib/services/color-name.service';
+export * from './lib/services/color.service';
+export * from './lib/services/color-map';
 export * from './lib/services/dynamic-focus';
 export * from './lib/services/env.service';
 export * from './lib/services/error.service';

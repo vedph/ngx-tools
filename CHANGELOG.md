@@ -3,6 +3,8 @@
 - [ngx-tools](./projects/myrmidon/ngx-tools/README.md#history)
 - [ngx-mat-tools](./projects/myrmidon/ngx-mat-tools/README.md#history)
 
+- 2026-09-05: updated packages.
+
 ## 3.0.1
 
 - 2026-08-21:

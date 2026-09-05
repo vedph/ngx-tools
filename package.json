@@ -11,7 +11,7 @@
     "build-lib": "ng build @myrmidon/ngx-tools && ng build @myrmidon/ngx-mat-tools"
   },
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.25.0",
   "dependencies": {
     "@angular/animations": "^22.0.0",
     "@angular/cdk": "^22.0.0",
@@ -34,9 +34,9 @@
     "jsdom": "^30.0.1",
     "ng-packagr": "^22.0.0",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.62.5"
+    "@rollup/rollup-win32-arm64-msvc": "^4.63.1"
   }
 }
